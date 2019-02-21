@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    stages {
+        stage ('Build'){
+            steps {
+                echo 'Doing the build stage'
+            }
+        }
+        stage ('Test'){
+            steps { 
+                echo 'Doing the Test stage'
+            }
+        }
+        stage ('Rebuild Failures'){
+            steps { 
+                echo 'Rebuilding the failed targets'
+            }
+        }
+        stage ('Deploy'){
+            steps { 
+                echo 'Deploying the built code on servers'
+            }
+        }
+        stage('Monitor'){
+            steps { 
+                echo 'Monitoring the sync on servers'
+            }
+        }
+       stage ('mail notification'){
+           steps {
+               emailext body: 'all the stages in the job \'pipeline_test1\' are completed successfully', subject: 'pipeline_test1 job is completed succesfully', to: 'magodugu@ptc.com'
+           }
+       }   
+    }
+}
